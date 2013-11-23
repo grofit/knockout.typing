@@ -1,0 +1,36 @@
+<html>
+	<head>
+	</head>
+	<body>
+    <script src="libs/knockout-2.3.0.min.js" type="text/javascript"></script>
+    <script src="src/knockout.typing.js" type="text/javascript"></script>
+
+		<style>
+          
+        </style>
+
+        <label for="typing-input">Start Typing</label>
+        <input type="text" id="typing-input" 
+				data-bind="typing: { started: startedTyping, stopped: stoppedTyping, timeout: 5000 }" />
+        <div id="notification" data-bind="text: notificationText"></div>      
+		
+        <script>
+            
+            function ViewModel()
+			{
+				var self = this;
+				this.notificationText = ko.observable("");
+				
+				this.startedTyping = function(currentText) {
+					self.notificationText("You started typing, with this content: " + currentText);
+				};
+				
+				this.stoppedTyping = function(currentText) {
+					self.notificationText("You stopped typing, with this content: " + currentText);
+				};			   
+            };
+
+            ko.applyBindings(new ViewModel());
+        </script>
+	</body>
+</html>
