@@ -29,6 +29,9 @@ ko.bindingHandlers.typing = {
 				startedTypingCallback(element.value);
 			}
 			
+			if(timeoutHandler)
+			{ clearTimeout(timeoutHandler); }
+			
 			timeoutHandler = setTimeout(timeoutProxyCallback, timeout);
 		};
 		
